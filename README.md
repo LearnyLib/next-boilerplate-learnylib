@@ -1,10 +1,12 @@
 # Bibliothèque LearnyLib
 
-Version 2406031751
+Version 2406031802
 
 ## Description
 
-La bibliothèque LearnyLib fournit un ensemble de services, de templates et de composants qui encadrent le développement de l’application. Elle offre un système d’authentification complet basé sur la Core API de LearnyLib.
+La bibliothèque LearnyLib est une dépendance du boilerplate NextJS de LearnyLib.
+
+Elle fournit un ensemble de services, de templates et de composants qui encadrent le développement de l’application Next. Elle offre un système d’authentification complet basé sur la Core API de LearnyLib.
 
 Pour l'utiliser, il faut encapsuler l'application dans le composant LearnyLibApp au niveau du Layout.
 
