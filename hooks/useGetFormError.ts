@@ -1,6 +1,6 @@
 'use client';
 import { useCallback } from 'react';
-import { FormStateType } from '../types/FormStateType';
+import FormStateType from '../types/FormStateType';
 import useText from './useTranslate';
 
 /**
