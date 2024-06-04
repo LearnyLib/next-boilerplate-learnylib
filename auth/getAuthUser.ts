@@ -2,6 +2,7 @@
 import { cache } from 'react';
 import CoreAPI from '../services/CoreAPI';
 import UserModel from '../models/UserModel';
+import isValidUserModel from '../validation/isValidUserModel';
 
 /**
  * Récupère les données complètes de l'utilisateur connecté via l'API
@@ -10,7 +11,9 @@ import UserModel from '../models/UserModel';
 export const getAuthUser = cache(async (): Promise<UserModel | null> => {
   try {
     const response = await CoreAPI.get('/users/me');
-
+    if (!isValidUserModel(response.data)) {
+      throw new Error('Invalid user data');
+    }
     return response.data;
   } catch (error) {
     console.log('Failed to fetch user', error);
