@@ -51,5 +51,6 @@
   "ResetPasswordError": "Der Link zum Zurücksetzen ist abgelaufen.",
   "ResetPasswordSuccess": "Ihr Passwort wurde erfolgreich zurückgesetzt!",
   "Validate": "Bestätigen",
-  "Confirm": "Bestätigen"
+  "Confirm": "Bestätigen",
+  "Cancel": "Abbrechen"
 }

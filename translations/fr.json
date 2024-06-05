@@ -51,5 +51,6 @@
   "ResetPasswordError": "Le lien de réinitialisation a expiré.",
   "ResetPasswordSuccess": "Votre mot de passe a été réinitialisé avec succès !",
   "Validate": "Valider",
-  "Confirm": "Confirmer"
+  "Confirm": "Confirmer",
+  "Cancel": "Annuler"
 }

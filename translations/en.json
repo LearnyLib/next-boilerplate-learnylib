@@ -51,5 +51,6 @@
   "ResetPasswordError": "The reset link has expired.",
   "ResetPasswordSuccess": "Your password has been successfully reset!",
   "Validate": "Validate",
-  "Confirm": "Confirm"
+  "Confirm": "Confirm",
+  "Cancel": "Cancel"
 }

@@ -51,5 +51,6 @@
   "ResetPasswordError": "El enlace para restablecer la contraseña ha caducado.",
   "ResetPasswordSuccess": "¡Tu contraseña ha sido restablecida con éxito!",
   "Validate": "Validar",
-  "Confirm": "Confirmar"
+  "Confirm": "Confirmar",
+  "Cancel": "Cancelar"
 }

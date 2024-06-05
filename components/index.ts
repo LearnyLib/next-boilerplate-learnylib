@@ -30,3 +30,7 @@ export { default as LightButton } from './ui/LightButton';
 export { default as FocusTemplate } from './ui/FocusTemplate';
 export { default as ErrorScreen } from './ui/ErrorScreen';
 export { default as CountryFlag } from './ui/CountryFlag';
+
+export { default as Modal } from './ui/modal/Modal';
+export { default as AlertModal } from './ui/modal/AlertModal';
+export { default as ConfirmModal } from './ui/modal/ConfirmModal';

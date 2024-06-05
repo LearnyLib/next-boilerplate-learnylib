@@ -51,5 +51,6 @@
   "ResetPasswordError": "Il link di reimpostazione è scaduto.",
   "ResetPasswordSuccess": "La tua password è stata reimpostata con successo!",
   "Validate": "Conferma",
-  "Confirm": "Conferma"
+  "Confirm": "Conferma",
+  "Cancel": "Annulla"
 }
