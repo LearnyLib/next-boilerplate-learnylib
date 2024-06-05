@@ -11,12 +11,25 @@ import useGetFormError from '../../hooks/useGetFormError';
 import useHandleInputChange from '../../hooks/useHandleInputChange';
 import useTranslate from '../../hooks/useTranslate';
 import useAppConfig from '../../hooks/useAppConfig';
+import useQueryString from '../../hooks/useQueryString';
+
+interface SignInFormProps {
+  /**
+   * URL de redirection suite au succès de la connexion
+   * N'est pris en compte qu'en l'absence du paramètre callbackUrl
+   */
+  defaultSuccessUrl?: string;
+}
 
 /**
  * Formulaire pour la connexion de l'utilisateur
  * @returns {JSX.Element} - Composant JSX
  */
-export default function SignInForm(): JSX.Element {
+export default function SignInForm({
+  defaultSuccessUrl,
+}: SignInFormProps): JSX.Element {
+  const query = useQueryString();
+
   const [state, action] = useFormState(signInAction, undefined);
 
   const config = useAppConfig();
@@ -76,6 +89,14 @@ export default function SignInForm(): JSX.Element {
           </Link>
         </Stack>
 
+        {defaultSuccessUrl && (
+          <input
+            type="hidden"
+            name="defaultSuccessUrl"
+            value={defaultSuccessUrl}
+          />
+        )}
+
         <CallbackUrlInput />
 
         <SubmitButton>{t('SignInAction')}</SubmitButton>
@@ -83,7 +104,7 @@ export default function SignInForm(): JSX.Element {
         <Typography align="center">
           {t('DoNotHaveAccount')}
           &nbsp;
-          <A href="/auth/sign-up" sx={{ cursor: 'pointer' }}>
+          <A href={`/auth/sign-up${query}`} sx={{ cursor: 'pointer' }}>
             {t('SignUp')}
           </A>
         </Typography>

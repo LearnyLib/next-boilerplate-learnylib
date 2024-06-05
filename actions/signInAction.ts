@@ -19,7 +19,6 @@ export default async function signInAction(
   const validation = SignInFormSchema.safeParse({
     username: formData.get('username'),
     password: formData.get('password'),
-    callbackUrl: formData.get('callbackUrl'),
   });
 
   if (!validation.success) {
@@ -44,6 +43,17 @@ export default async function signInAction(
   }
 
   // Redirection vers l'URL cible en cas de succès
-  const callbackUrl = formData.get('callbackUrl')?.toString() || '/';
-  redirect(callbackUrl);
+  const callbackUrl = formData.get('callbackUrl')?.toString();
+
+  const defaultSuccessUrl = formData.get('defaultSuccessUrl')?.toString();
+
+  console.log('callbackUrl', callbackUrl);
+
+  console.log('defaultSuccessUrl', defaultSuccessUrl);
+
+  const redirectUrl: string = callbackUrl || defaultSuccessUrl || '/';
+
+  redirect(redirectUrl);
+
+  return { status: 'success' };
 }

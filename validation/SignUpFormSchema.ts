@@ -18,7 +18,6 @@ const SignUpFormSchema = z.object({
     .regex(/[0-9]/, { message: 'PasswordMustContain1Number' })
     .regex(/[^a-zA-Z0-9]/, { message: 'PasswordMustContain1SpecialCharacter' })
     .trim(),
-  callbackUrl: z.string().trim(),
 });
 
 export default SignUpFormSchema;

@@ -10,11 +10,13 @@ import { useSearchParams } from 'next/navigation';
 export default function CallbackUrlInput(): JSX.Element {
   const searchParams = useSearchParams();
 
+  if (!searchParams.has('callbackUrl')) return <></>;
+
   return (
     <input
       name="callbackUrl"
       type="hidden"
-      value={searchParams.get('callbackUrl') || '/'}
+      value={searchParams.get('callbackUrl') || ''}
     />
   );
 }

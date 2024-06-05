@@ -3,23 +3,14 @@ import { Button, Stack, Typography } from '@mui/material';
 import useTranslate from '../../hooks/useTranslate';
 import useAppConfig from '../../hooks/useAppConfig';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
+import useQueryString from '../../hooks/useQueryString';
 
 /**
  * Composant qui permet à l'utilisateur de choisir entre s'inscrire ou se connecter.
  * @returns {JSX.Element} - Composant JSX
  */
 export default function AuthForm(): JSX.Element {
-  const searchParams = useSearchParams();
-
-  const query = useMemo(
-    () =>
-      searchParams.has('callbackUrl')
-        ? `?callbackUrl=${searchParams.get('callbackUrl')}`
-        : '',
-    [searchParams],
-  );
+  const query = useQueryString();
 
   const config = useAppConfig();
 

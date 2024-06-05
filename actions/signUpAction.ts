@@ -42,7 +42,6 @@ export default async function signUpAction(
     email: formData.get('email'),
     phone: formData.get('phone'),
     password: formData.get('password'),
-    callbackUrl: formData.get('callbackUrl'),
   });
 
   if (!validation.success) {
@@ -90,8 +89,17 @@ export default async function signUpAction(
   }
 
   // Rediriger vers l'URL cible en cas de succès
-  const callbackUrl = formData.get('callbackUrl')?.toString() || '/';
-  redirect(callbackUrl);
+  const callbackUrl = formData.get('callbackUrl')?.toString();
+
+  const callbackQuery = callbackUrl ? `?callbackUrl=${callbackUrl}` : '';
+
+  let successUrl = formData.get('successUrl')?.toString();
+
+  successUrl = successUrl ? successUrl + callbackQuery : undefined;
+
+  const redirectUrl = successUrl || callbackUrl || '/';
+
+  redirect(redirectUrl);
 
   return { status: 'success' };
 }

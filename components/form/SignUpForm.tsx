@@ -13,12 +13,24 @@ import useGetFormError from '../../hooks/useGetFormError';
 import useHandleInputChange from '../../hooks/useHandleInputChange';
 import useTranslate from '../../hooks/useTranslate';
 import useAppConfig from '../../hooks/useAppConfig';
+import useQueryString from '../../hooks/useQueryString';
+
+interface SignUpFormProps {
+  /**
+   * URL de redirection suite au succès de l'inscription
+   */
+  successUrl?: string;
+}
 
 /**
  * Formulaire pour l'inscription.
  * @returns {JSX.Element} - Composant JSX
  */
-export default function SignUpForm(): JSX.Element {
+export default function SignUpForm({
+  successUrl,
+}: SignUpFormProps): JSX.Element {
+  const query = useQueryString();
+
   const [state, action] = useFormState(signUpAction, undefined);
 
   const config = useAppConfig();
@@ -130,6 +142,10 @@ export default function SignUpForm(): JSX.Element {
           error={getError('acceptTerms')}
         />
 
+        {successUrl && (
+          <input type="hidden" name="successUrl" value={successUrl} />
+        )}
+
         <CallbackUrlInput />
 
         <SubmitButton>{t('SignUpAction')}</SubmitButton>
@@ -137,7 +153,7 @@ export default function SignUpForm(): JSX.Element {
         <Typography align="center">
           {t('AlreadyHaveAccount')}
           &nbsp;
-          <A href="/auth/sign-in" sx={{ cursor: 'pointer' }}>
+          <A href={`/auth/sign-in${query}`} sx={{ cursor: 'pointer' }}>
             {t('SignIn')}
           </A>
         </Typography>
