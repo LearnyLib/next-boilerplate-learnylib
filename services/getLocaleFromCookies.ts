@@ -10,7 +10,8 @@ import isValidLocale from '../validation/isValidLocale';
  * @returns {Promise<LocaleType>} - Promesse retournant la langue locale
  */
 export const getLocaleFromCookies = cache(async (): Promise<LocaleType> => {
-  const cookieLocale: string | undefined = cookies().get('locale')?.value;
+  const cookieLocale: string | undefined =
+    cookies().get('learnylib_locale')?.value;
 
   const locale: LocaleType = isValidLocale(cookieLocale)
     ? cookieLocale

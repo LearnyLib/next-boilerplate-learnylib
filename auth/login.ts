@@ -19,7 +19,7 @@ export default async function login(
     // Sauvegarde les tokens dans des cookies HttpOnly
     const tokens = response.data;
 
-    await setTokensInCookies(tokens);
+    setTokensInCookies(tokens);
   } catch {
     throw new Error('Login failed');
   }

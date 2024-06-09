@@ -28,7 +28,7 @@ export default function extractLocaleFromRequest(
 
   // On récupère la locale stockée dans les cookies
   const cookieLocaleString: string | undefined =
-    request.cookies.get('locale')?.value;
+    request.cookies.get('learnylib_locale')?.value;
 
   const cookieLocale: LocaleType | undefined = isValidLocale(cookieLocaleString)
     ? cookieLocaleString

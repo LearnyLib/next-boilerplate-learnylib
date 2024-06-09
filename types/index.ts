@@ -21,3 +21,4 @@ export type { default as AuthTokensType } from './AuthTokensType';
 export type { default as AppConfigType } from './AppConfigType';
 export type { default as AccessRoutesType } from './AccessRoutesType';
 export type { default as AccessControlResultType } from './AccessControlResultType';
+export type { default as CookieOptionsType } from './CookieOptionsType';

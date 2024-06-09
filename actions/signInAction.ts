@@ -47,10 +47,6 @@ export default async function signInAction(
 
   const defaultSuccessUrl = formData.get('defaultSuccessUrl')?.toString();
 
-  console.log('callbackUrl', callbackUrl);
-
-  console.log('defaultSuccessUrl', defaultSuccessUrl);
-
   const redirectUrl: string = callbackUrl || defaultSuccessUrl || '/';
 
   redirect(redirectUrl);

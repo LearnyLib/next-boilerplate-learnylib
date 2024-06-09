@@ -1,19 +1,20 @@
 import 'server-only';
-import getSession from './getSession';
 import { NextRequest } from 'next/server';
 import AccessControlResultType from '../types/AccessControlResultType';
 import AccessRoutesTypes from '../types/AccessRoutesType';
+import { validateToken } from './tokens';
+import extractAuthTokenFromRequest from './extractAuthTokenFromRequest';
 
 /**
  * Vérifie si l'utilisateur a le droit ou non d'exécuter une requête en fonction de ses rôles
  * @param {NextRequest} request - Requête HTTP envoyée par le client
  * @param {AccessRoutesTypes} accessRoutes - Routes publiques et routes protégées
- * @returns {Promise<AccessControlResultType>} - Retourne une promesse résolue avec un booléen indiquant si l'utilisateur est autorisé ou non
+ * @returns {AccessControlResultType} - Retourne un booléen indiquant si l'utilisateur est autorisé ou non
  */
-export default async function controlAccess(
+export default function controlAccess(
   request: NextRequest,
   accessRoutes: AccessRoutesTypes,
-): Promise<AccessControlResultType> {
+): AccessControlResultType {
   // Chemin de l'URL auquel l'utilisateur tente d'accéder
   const path = request.nextUrl.pathname;
 
@@ -30,12 +31,17 @@ export default async function controlAccess(
   // Si aucune route protégée n'est trouvée, alors on considère que la route est publique
   if (!matchingProtectedRoute) return 'authorized';
 
-  // On récupère les informations de la session dans les cookies
-  const session = await getSession();
+  // On récupère le token d'authentification (refresh ou sso)
+  const authToken: string | undefined = extractAuthTokenFromRequest(request);
 
-  if (!session.isAuth) return 'unauthorized';
+  if (!authToken) return 'unauthorized';
 
-  // On vérifie si l'utilisateur a le droit d'accéder à la ressource
+  // On contrôle la validité du token et on récupère le payload
+  const authTokenPayload = validateToken(authToken);
+
+  if (!authTokenPayload) return 'unauthorized';
+
+  // On vérifie si l'utilisateur a le droit d'accéder à la ressource à partir du payload du token
 
   // Si aucun rôle spécifique n'est requis, alors la requête est acceptée
   if (
@@ -47,7 +53,7 @@ export default async function controlAccess(
 
   // Si l'utilisateur a au moins un rôle autorisé, alors la requête est acceptée
   const hasAuthorizedRole = matchingProtectedRoute.roles.some((role) =>
-    session.user?.roles?.includes(role),
+    authTokenPayload.roles?.includes(role),
   );
 
   if (!hasAuthorizedRole) return 'forbidden';

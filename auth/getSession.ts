@@ -13,11 +13,11 @@ export default async function getSession(): Promise<SessionType> {
     user: null,
   };
 
-  const refreshToken = await getRefreshToken();
+  const refreshToken = getRefreshToken();
 
   if (!refreshToken) return session;
 
-  const payload = await validateToken(refreshToken);
+  const payload = validateToken(refreshToken);
 
   if (!payload) return session;
 

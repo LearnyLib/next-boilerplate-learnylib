@@ -6,6 +6,7 @@ import { z } from 'zod';
 const TokenPayloadSchema = z.object({
   sub: z.number(),
   roles: z.array(z.string()),
+  type: z.enum(['access', 'refresh', 'sso']),
   iat: z.number(),
   exp: z.number(),
 });

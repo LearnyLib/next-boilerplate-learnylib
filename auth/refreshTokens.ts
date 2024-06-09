@@ -1,6 +1,6 @@
 import 'server-only';
 import CoreAPI from '../services/CoreAPI';
-import { getRefreshToken, setTokensInCookies } from './tokens';
+import { getRefreshToken, getSsoToken, setTokensInCookies } from './tokens';
 import AuthTokensType from '../types/AuthTokensType';
 
 /**
@@ -9,7 +9,7 @@ import AuthTokensType from '../types/AuthTokensType';
  * @throws {Error} - Lance une erreur si le refresh token est introuvable ou si l'opération de rafraîchissement échoue
  */
 export default async function refreshTokens(): Promise<AuthTokensType> {
-  const refreshToken = await getRefreshToken();
+  const refreshToken = getRefreshToken() || getSsoToken();
 
   if (!refreshToken) {
     throw new Error('Refresh token not found');
@@ -22,7 +22,7 @@ export default async function refreshTokens(): Promise<AuthTokensType> {
     // Sauvegarde les tokens dans les cookies HttpOnly
     const tokens = response.data;
 
-    await setTokensInCookies(tokens);
+    setTokensInCookies(tokens);
 
     return tokens;
   } catch (error) {

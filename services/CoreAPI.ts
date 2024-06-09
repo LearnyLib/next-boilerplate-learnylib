@@ -1,7 +1,7 @@
 import 'server-only';
 import axios, { AxiosInstance } from 'axios';
 import refreshTokens from '../auth/refreshTokens';
-import { cookies } from 'next/headers';
+import { getAccessToken } from '../auth/tokens';
 
 /**
  * URL de base de l'API
@@ -29,7 +29,7 @@ const CoreAPI: AxiosInstance = axios.create({
  */
 CoreAPI.interceptors.request.use(
   function (config) {
-    const accessToken = cookies().get('learnylib_access_token')?.value;
+    const accessToken = getAccessToken();
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;

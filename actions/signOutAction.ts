@@ -8,6 +8,6 @@ import { removeTokensFromCookies } from '../auth/tokens';
  * @returns {Promise<void>} - Une promesse résolue lorsque les tokens sont supprimés et la redirection effectuée
  */
 export default async function signOutAction(): Promise<void> {
-  await removeTokensFromCookies();
+  removeTokensFromCookies();
   redirect('/');
 }

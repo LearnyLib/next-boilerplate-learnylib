@@ -13,6 +13,11 @@ export default interface TokenPayloadType {
   roles: string[];
 
   /**
+   * Type de token
+   */
+  type: 'access' | 'refresh' | 'sso';
+
+  /**
    * Date d'émission du token (timestamp en secondes)
    */
   iat: number;
