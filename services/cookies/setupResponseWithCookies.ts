@@ -27,7 +27,7 @@ export default function setupResponseWithCookies(
 
     if (payload) {
       response.cookies.set(
-        'learnylib_sso_token',
+        'learnylib_refresh_token',
         ssoToken,
         createTokenCookieOptions(payload),
       );

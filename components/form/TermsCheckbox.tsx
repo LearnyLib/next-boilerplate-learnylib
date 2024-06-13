@@ -46,7 +46,7 @@ export default function TermsCheckbox({
               {t('IHaveReadAndAccepted')}
               &nbsp;
               <Link
-                href={config?.legal.termsUrl}
+                href={config?.urls?.cgv}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -56,7 +56,7 @@ export default function TermsCheckbox({
               {t('and')}
               &nbsp;
               <Link
-                href={config?.legal.conditionsUrl}
+                href={config?.urls?.cgu}
                 target="_blank"
                 rel="noopener noreferrer"
               >

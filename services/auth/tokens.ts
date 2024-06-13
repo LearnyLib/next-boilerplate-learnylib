@@ -78,23 +78,12 @@ export function getRefreshToken(): string | undefined {
 }
 
 /**
- * Récupère le token SSO dans les cookies
- * @returns {string | undefined} - Retourne le token de rafraîchissement sous forme de chaîne de caractères ou undefined si le token n'est pas trouvé
- */
-export function getSsoToken(): string | undefined {
-  const token = cookies().get('learnylib_sso_token')?.value;
-  if (!token || !validateToken(token)) return undefined;
-  return token;
-}
-
-/**
  * Supprime les cookies contenant les tokens d'authentification
  * @returns {void}
  */
 export function removeTokensFromCookies(): void {
   cookies().delete('learnylib_access_token');
   cookies().delete('learnylib_refresh_token');
-  cookies().delete('learnylib_sso_token');
 }
 
 /**

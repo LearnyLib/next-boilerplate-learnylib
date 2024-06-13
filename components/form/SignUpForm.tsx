@@ -27,7 +27,7 @@ export default function SignUpForm(): JSX.Element {
   const config = useAppConfig();
 
   // URL de redirection suite à l'inscription
-  const successUrl = config?.redirectUrls?.signUpSuccess;
+  const successUrl = config?.urls?.signUpSuccess;
 
   const t = useTranslate();
 

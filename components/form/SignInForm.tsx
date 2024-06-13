@@ -26,7 +26,7 @@ export default function SignInForm(): JSX.Element {
 
   // URL de redirection suite à la connexion
   // Ne s'applique pas si le query param callbackUrl est présent
-  const defaultSuccessUrl = config?.redirectUrls?.signInSuccess;
+  const defaultSuccessUrl = config?.urls?.signInSuccess;
 
   const t = useTranslate();
 

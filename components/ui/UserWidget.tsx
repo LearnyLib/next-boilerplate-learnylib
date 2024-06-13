@@ -11,15 +11,15 @@ import useAuthUser from '../../hooks/useAuthUser';
 export default function UserWidget(): JSX.Element {
   const user = useAuthUser();
 
-  if (!user) {
-    return <div></div>;
-  }
-
   return (
     <Stack direction="row" spacing={1} alignItems="center">
-      <UserAvatar user={user} size={48} />
+      {user && (
+        <>
+          <UserAvatar user={user} size={48} />
 
-      <Typography variant="body2">{user.name}</Typography>
+          <Typography variant="body2">{user.name}</Typography>
+        </>
+      )}
 
       <SignOutButton />
     </Stack>

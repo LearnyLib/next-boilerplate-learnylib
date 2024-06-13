@@ -29,6 +29,12 @@ const CoreAPI: AxiosInstance = axios.create({
  */
 CoreAPI.interceptors.request.use(
   function (config) {
+    console.log(
+      'Core API request:',
+      config?.method?.toUpperCase(),
+      config?.url,
+    );
+
     const accessToken = getAccessToken();
 
     if (accessToken) {
