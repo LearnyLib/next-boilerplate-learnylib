@@ -1,10 +1,10 @@
 import 'server-only';
-import AuthTokensType from '../types/AuthTokensType';
+import AuthTokensType from '../../types/AuthTokensType';
 import { cookies } from 'next/headers';
-import decodeJwtPayload from '../utils/decodeJwtPayload';
-import TokenPayloadType from '../types/TokenPayloadType';
-import TokenPayloadSchema from '../validation/TokenPayloadSchema';
-import CookieOptions from '../types/CookieOptionsType';
+import decodeJwtPayload from '../../utils/decodeJwtPayload';
+import TokenPayloadType from '../../types/TokenPayloadType';
+import TokenPayloadSchema from '../../validation/TokenPayloadSchema';
+import CookieOptions from '../../types/CookieOptionsType';
 
 /**
  * Enregistrement des tokens dans des cookies HttpOnly

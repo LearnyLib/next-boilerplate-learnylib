@@ -2,8 +2,8 @@
 import FormStateType from '../types/FormStateType';
 import { redirect } from 'next/navigation';
 import CredentialsType from '../types/CredentialsType';
-import login from '../auth/login';
 import SignInFormSchema from '../validation/SignInFormSchema';
+import login from '../services/auth/login';
 
 /**
  * Gestion de la soumission du formulaire de connexion côté serveur

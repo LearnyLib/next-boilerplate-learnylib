@@ -3,8 +3,8 @@ import styles from '../../styles/learnylib.module.css';
 import Menu from './Menu';
 import LightButton from './LightButton';
 import UserWidget from './UserWidget';
-import Logo from './Logo';
 import useAppConfig from '../../hooks/useAppConfig';
+import NavTop from './NavTop';
 
 /**
  * Barre de navigation de l'application
@@ -18,9 +18,7 @@ export default function Nav(): JSX.Element {
       className={styles.nav}
       style={{ backgroundColor: config?.theme.colors.dark }}
     >
-      <div className={styles.navTop}>
-        <Logo />
-      </div>
+      <NavTop />
 
       <Menu />
 

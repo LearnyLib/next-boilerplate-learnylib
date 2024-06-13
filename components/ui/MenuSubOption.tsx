@@ -5,6 +5,7 @@ import MenuSubOptionType from '../../types/MenuSubOptionType';
 import Link from 'next/link';
 import useIsMenuPathActive from '../../hooks/useIsMenuPathActive';
 import { useTranslations } from 'next-intl';
+import useTemplateStore from '../../store/useTemplateStore';
 
 interface MenuSubOptionProps {
   subOption: MenuSubOptionType;
@@ -19,6 +20,8 @@ export default function MenuSubOption({
 }: MenuSubOptionProps): JSX.Element {
   const t = useTranslations();
 
+  const { setShowSmallScreenNav } = useTemplateStore();
+
   // La sous-option est-elle active ?
   const isMenuPathActive = useIsMenuPathActive();
   const isActive = isMenuPathActive(subOption.path);
@@ -27,6 +30,7 @@ export default function MenuSubOption({
     <Link
       href={subOption.path}
       className={isActive ? styles.menuSubOptionActive : styles.menuSubOption}
+      onClick={() => setShowSmallScreenNav(false)}
     >
       <Typography>&bull;</Typography>
 

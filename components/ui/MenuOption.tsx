@@ -9,6 +9,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import useIsMenuPathActive from '../../hooks/useIsMenuPathActive';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import useTemplateStore from '../../store/useTemplateStore';
 
 interface MenuLinkProps {
   option: MenuOptionType;
@@ -20,6 +21,8 @@ interface MenuLinkProps {
  */
 export default function MenuOption({ option }: MenuLinkProps): JSX.Element {
   const t = useTranslations();
+
+  const { setShowSmallScreenNav } = useTemplateStore();
 
   // Afficher ou non les sous-options
   const [open, setOpen] = useState(false);
@@ -59,10 +62,12 @@ export default function MenuOption({ option }: MenuLinkProps): JSX.Element {
 
   return (
     <>
-      {hasSubOptions ? (
-        <div onClick={toggle}>{optionContent}</div>
-      ) : (
-        <Link href={option.path}>{optionContent}</Link>
+      {hasSubOptions && <div onClick={toggle}>{optionContent}</div>}
+
+      {!hasSubOptions && (
+        <Link href={option.path} onClick={() => setShowSmallScreenNav(false)}>
+          {optionContent}
+        </Link>
       )}
 
       <div>

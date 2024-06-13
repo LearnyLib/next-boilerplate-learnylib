@@ -52,5 +52,14 @@
   "ResetPasswordSuccess": "Votre mot de passe a été réinitialisé avec succès !",
   "Validate": "Valider",
   "Confirm": "Confirmer",
-  "Cancel": "Annuler"
+  "Cancel": "Annuler",
+  "DropFiles": "Déposez les fichiers ici",
+  "Browse": "Parcourir",
+  "MaxFilesExceeded": "Limite de fichiers atteinte.",
+  "UnsupportedFileFormat": "Format de fichier non pris en charge",
+  "MissingFile": "Aucun fichier sélectionné",
+  "FileTooLarge": "Fichier trop lourd",
+  "FileUploadFailed": "Échec du téléchargement du fichier",
+  "UnacceptedExtension": "Extension non acceptée : {ext}.",
+  "UnacceptedExtensions": "Extensions non acceptées : {ext}."
 }

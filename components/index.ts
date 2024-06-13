@@ -34,3 +34,5 @@ export { default as CountryFlag } from './ui/CountryFlag';
 export { default as Modal } from './ui/modal/Modal';
 export { default as AlertModal } from './ui/modal/AlertModal';
 export { default as ConfirmModal } from './ui/modal/ConfirmModal';
+
+export { default as FileUploader } from './form/FileUploader/FileUploader';

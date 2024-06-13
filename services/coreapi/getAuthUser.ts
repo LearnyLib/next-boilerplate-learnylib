@@ -1,8 +1,8 @@
 'use server';
 import { cache } from 'react';
-import CoreAPI from '../services/CoreAPI';
-import UserModel from '../models/UserModel';
-import isValidUserModel from '../validation/isValidUserModel';
+import CoreAPI from './CoreAPI';
+import UserModel from '../../models/UserModel';
+import isValidUserModel from '../../validation/isValidUserModel';
 
 /**
  * Récupère les données complètes de l'utilisateur connecté via l'API

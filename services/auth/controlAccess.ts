@@ -1,7 +1,7 @@
 import 'server-only';
 import { NextRequest } from 'next/server';
-import AccessControlResultType from '../types/AccessControlResultType';
-import AccessRoutesTypes from '../types/AccessRoutesType';
+import AccessControlResultType from '../../types/AccessControlResultType';
+import AccessRoutesTypes from '../../types/AccessRoutesType';
 import { validateToken } from './tokens';
 import extractAuthTokenFromRequest from './extractAuthTokenFromRequest';
 

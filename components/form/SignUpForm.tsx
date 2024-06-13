@@ -15,25 +15,19 @@ import useTranslate from '../../hooks/useTranslate';
 import useAppConfig from '../../hooks/useAppConfig';
 import useQueryString from '../../hooks/useQueryString';
 
-interface SignUpFormProps {
-  /**
-   * URL de redirection suite au succès de l'inscription
-   */
-  successUrl?: string;
-}
-
 /**
  * Formulaire pour l'inscription.
  * @returns {JSX.Element} - Composant JSX
  */
-export default function SignUpForm({
-  successUrl,
-}: SignUpFormProps): JSX.Element {
+export default function SignUpForm(): JSX.Element {
   const query = useQueryString();
 
   const [state, action] = useFormState(signUpAction, undefined);
 
   const config = useAppConfig();
+
+  // URL de redirection suite à l'inscription
+  const successUrl = config?.redirectUrls?.signUpSuccess;
 
   const t = useTranslate();
 

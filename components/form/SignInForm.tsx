@@ -13,26 +13,20 @@ import useTranslate from '../../hooks/useTranslate';
 import useAppConfig from '../../hooks/useAppConfig';
 import useQueryString from '../../hooks/useQueryString';
 
-interface SignInFormProps {
-  /**
-   * URL de redirection suite au succès de la connexion
-   * N'est pris en compte qu'en l'absence du paramètre callbackUrl
-   */
-  defaultSuccessUrl?: string;
-}
-
 /**
  * Formulaire pour la connexion de l'utilisateur
  * @returns {JSX.Element} - Composant JSX
  */
-export default function SignInForm({
-  defaultSuccessUrl,
-}: SignInFormProps): JSX.Element {
+export default function SignInForm(): JSX.Element {
   const query = useQueryString();
 
   const [state, action] = useFormState(signInAction, undefined);
 
   const config = useAppConfig();
+
+  // URL de redirection suite à la connexion
+  // Ne s'applique pas si le query param callbackUrl est présent
+  const defaultSuccessUrl = config?.redirectUrls?.signInSuccess;
 
   const t = useTranslate();
 

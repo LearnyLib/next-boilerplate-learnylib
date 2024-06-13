@@ -1,6 +1,6 @@
 import 'server-only';
-import CredentialsType from '../types/CredentialsType';
-import CoreAPI from '../services/CoreAPI';
+import CredentialsType from '../../types/CredentialsType';
+import CoreAPI from '../coreapi/CoreAPI';
 import { setTokensInCookies } from './tokens';
 
 /**

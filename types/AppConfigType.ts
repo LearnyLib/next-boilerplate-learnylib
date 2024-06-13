@@ -45,10 +45,28 @@ export default interface AppConfigType {
   };
 
   /**
-   * Liens vers les CGV et les CGU
+   * Liens et URLs de redirection personnalisés
    */
-  legal: {
-    termsUrl: string; // CGV
-    conditionsUrl: string; // CGU
+  urls?: {
+    /**
+     * Conditions générales de vente
+     */
+    cgv?: string;
+
+    /**
+     * Conditions générales d'utilisation
+     */
+    cgu?: string;
+
+    /**
+     * URL de redirection après inscription
+     */
+    signUpSuccess?: string;
+
+    /**
+     * URL de redirection après connexion
+     * Ne s'applique pas si le paramètre callbackUrl est présent dans l'URL
+     */
+    signInSuccess?: string;
   };
 }

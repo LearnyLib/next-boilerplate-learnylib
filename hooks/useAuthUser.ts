@@ -1,7 +1,7 @@
 'use client';
 import UserModel from '../models/UserModel';
-import getAuthUser from '../auth/getAuthUser';
 import { useQuery } from '@tanstack/react-query';
+import { getAuthUser } from '../services';
 
 /**
  * Hook qui récupère l'utilisateur authentifié

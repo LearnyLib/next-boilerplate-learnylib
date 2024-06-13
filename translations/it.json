@@ -52,5 +52,14 @@
   "ResetPasswordSuccess": "La tua password è stata reimpostata con successo!",
   "Validate": "Conferma",
   "Confirm": "Conferma",
-  "Cancel": "Annulla"
+  "Cancel": "Annulla",
+  "DropFiles": "Trascina i file qui",
+  "Browse": "Sfoglia",
+  "MaxFilesExceeded": "Limite di file raggiunta.",
+  "UnsupportedFileFormat": "Formato di file non supportato",
+  "MissingFile": "Nessun file selezionato",
+  "FileTooLarge": "File troppo grande",
+  "FileUploadFailed": "Caricamento file fallito",
+  "UnacceptedExtension": "Estensione non accettata: {ext}.",
+  "UnacceptedExtensions": "Estensioni non accettate: {ext}."
 }

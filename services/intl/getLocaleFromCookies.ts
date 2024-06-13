@@ -1,9 +1,9 @@
 import 'server-only';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
-import { defaultLocale } from '../config/locales';
-import LocaleType from '../types/LocaleType';
-import isValidLocale from '../validation/isValidLocale';
+import { defaultLocale } from './locales';
+import LocaleType from '../../types/LocaleType';
+import isValidLocale from '../../validation/isValidLocale';
 
 /**
  * Renvoie la langue locale enregistrée dans les cookies

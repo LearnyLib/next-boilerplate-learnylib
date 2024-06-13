@@ -1,4 +1,4 @@
-import LocaleType from '../types/LocaleType';
+import LocaleType from '../../types/LocaleType';
 
 /**
  * Langues acceptées

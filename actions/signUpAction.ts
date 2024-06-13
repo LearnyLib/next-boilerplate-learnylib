@@ -1,12 +1,12 @@
 'use server';
 import FormErrorsType from '../types/FormErrorsType';
 import FormStateType from '../types/FormStateType';
-import CoreAPI from '../services/CoreAPI';
 import { redirect } from 'next/navigation';
-import login from '../auth/login';
 import CredentialsType from '../types/CredentialsType';
 import SignUpFormSchema from '../validation/SignUpFormSchema';
 import CreateUserDto from '../dto/CreateUserDto';
+import CoreAPI from '../services/coreapi/CoreAPI';
+import login from '../services/auth/login';
 
 /**
  * Création du compte utilisateur après soumission du formulaire d'inscription

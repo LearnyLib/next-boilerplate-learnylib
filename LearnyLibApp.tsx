@@ -3,7 +3,7 @@ import './styles/globals.css';
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import TemplateProvider from './components/ui/TemplateProvider';
-import { getLightModeFromCookies } from './services/lightMode';
+import { getLightModeFromCookies } from './services/cookies/lightMode';
 import AppConfigType from './types/AppConfigType';
 import LightModeType from './types/LightModeType';
 

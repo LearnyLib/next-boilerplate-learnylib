@@ -1,6 +1,6 @@
 'use server';
 import { redirect } from 'next/navigation';
-import { removeTokensFromCookies } from '../auth/tokens';
+import { removeTokensFromCookies } from '../services/auth/tokens';
 
 /**
  * Déconnexion de l'utilisateur

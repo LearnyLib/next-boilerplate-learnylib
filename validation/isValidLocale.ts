@@ -1,4 +1,4 @@
-import { locales } from '../config/locales';
+import { locales } from '../services/intl/locales';
 import LocaleType from '../types/LocaleType';
 
 /**

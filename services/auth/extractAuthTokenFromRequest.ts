@@ -1,6 +1,7 @@
 import 'server-only';
 import { NextRequest } from 'next/server';
 import { validateToken } from './tokens';
+import decrypt from '../crypto/decrypt';
 
 /**
  * Extrait le token d'authentification de la requête
@@ -14,10 +15,9 @@ export default function extractAuthTokenFromRequest(
 ): string | undefined {
   const refreshToken = request.cookies.get('learnylib_refresh_token')?.value;
 
-  const ssoToken =
-    request.cookies.get('learnylib_sso_token')?.value ||
-    request.nextUrl.searchParams.get('ssoToken') ||
-    undefined;
+  const encryptedSsoToken = request.nextUrl.searchParams.get('sso');
+
+  const ssoToken = encryptedSsoToken ? decrypt(encryptedSsoToken) : undefined;
 
   const authToken: string | undefined = refreshToken || ssoToken;
 

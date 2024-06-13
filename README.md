@@ -1,6 +1,6 @@
 # Bibliothèque LearnyLib
 
-Version 2406051536
+Version 2406131119
 
 ## Description
 
@@ -24,18 +24,6 @@ Il prend en paramètre la configuration de l'application et de l'internationalis
 
 Actions côté serveur (server actions) pour la gestion des soumissions de formulaire ou des actions déclenchées côté client.
 
-### `auth`
-
-Fonctions côté serveur pour la gestion de l'authentification.
-
-Le système d'authentification de la librairie fait appel à la Core API de LearnyLib. La Core API centralise la gestion des utilisateurs et l'authentification SSO (Single Sign-On) pour l'ensemble des applications LearnyLib.
-
-Le système d'authentification suit le protocole standard OAuth 2.0. Il utilise des jeux d'access/refresh tokens JWT (JSON Web Tokens) enregistrés dans des cookies HttpOnly pour assurer la sécurité et la gestion des sessions
-
-#### Fonctions utilisables dans l'application :
-
-- getAuthUser : récupère les données de l'utilisateur authentifié côté serveur
-
 ### `components`
 
 Composants côté client réutilisables basés sur la bibliothèque Material-UI.
@@ -47,11 +35,6 @@ Interfaces TypeScript définissant le format des Data Transfer Objects.
 ### `hooks`
 
 Hooks côté client.
-
-#### Fonctions utilisables dans l'application :
-
-- useAuthUser : récupère les données de l'utilisateur authentifié côté client
-- useToast : affiche un message toast en bas de l'écran
 
 ### `images`
 
@@ -79,7 +62,7 @@ Feuilles de style et modules CSS.
 
 Configuration du thème MUI.
 
-### `translation`
+### `translations`
 
 Fichiers de traduction des textes de la librairie.
 

@@ -2,10 +2,10 @@
 import Nav from './Nav';
 import useTemplateStore from '../../store/useTemplateStore';
 import { useEffect, useState } from 'react';
-import NavToggleButton from './NavToggleButton';
 import MenuType from '../../types/MenuType';
 import styles from '../../styles/learnylib.module.css';
 import useMenuStore from '../../store/useMenuStore';
+import SmallScreenHeader from './SmallScreenHeader';
 
 interface MenuTemplateProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ interface MenuTemplateProps {
 
 interface ShowState {
   nav: boolean;
-  navButton: boolean;
+  header: boolean;
   main: boolean;
 }
 
@@ -35,7 +35,7 @@ export default function MenuTemplate({
 
   const [show, setShow] = useState<ShowState>({
     nav: false,
-    navButton: false,
+    header: false,
     main: false,
   });
 
@@ -58,7 +58,7 @@ export default function MenuTemplate({
   useEffect(() => {
     setShow({
       nav: !isSmallScreen || showSmallScreenNav,
-      navButton: isSmallScreen,
+      header: isSmallScreen,
       main: !isSmallScreen || !showSmallScreenNav,
     });
   }, [isSmallScreen, showSmallScreenNav]);
@@ -72,7 +72,7 @@ export default function MenuTemplate({
     <>
       {show.nav && <Nav />}
 
-      {show.navButton && <NavToggleButton />}
+      {show.header && <SmallScreenHeader />}
 
       {show.main && (
         <main className={styles.main}>

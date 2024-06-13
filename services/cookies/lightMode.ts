@@ -1,7 +1,7 @@
 import 'server-only';
 import { cookies } from 'next/headers';
-import LightModeType from '../types/LightModeType';
-import isValidLightMode from '../validation/isValidLightMode';
+import LightModeType from '../../types/LightModeType';
+import isValidLightMode from '../../validation/isValidLightMode';
 
 /**
  * Récupère le mode d'éclairage enregistré dans les cookies

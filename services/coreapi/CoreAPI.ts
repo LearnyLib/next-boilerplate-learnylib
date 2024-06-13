@@ -1,7 +1,7 @@
 import 'server-only';
 import axios, { AxiosInstance } from 'axios';
-import refreshTokens from '../auth/refreshTokens';
 import { getAccessToken } from '../auth/tokens';
+import refreshTokens from '../auth/refreshTokens';
 
 /**
  * URL de base de l'API

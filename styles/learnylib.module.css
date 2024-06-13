@@ -18,6 +18,9 @@
 
 .navTop {
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navBottom {
@@ -146,23 +149,24 @@
   align-items: center;
 }
 
+.smallScreenHeader {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .navToggleButton {
   all: unset;
   background: none;
   font: inherit;
   color: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 4px;
-  margin: 10px;
-  color: white;
-  border-radius: 5px;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
+  display: none;
 }
 
 .section,
@@ -179,9 +183,17 @@
     width: 100%;
   }
 
+  .navTop {
+    padding: 5px 10px;
+  }
+
   .section,
   .focusSection {
-    padding: 10px;
+    padding: 80px 10px;
+  }
+
+  .navToggleButton {
+    display: block;
   }
 }
 

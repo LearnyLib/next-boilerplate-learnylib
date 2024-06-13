@@ -22,3 +22,5 @@ export type { default as AppConfigType } from './AppConfigType';
 export type { default as AccessRoutesType } from './AccessRoutesType';
 export type { default as AccessControlResultType } from './AccessControlResultType';
 export type { default as CookieOptionsType } from './CookieOptionsType';
+export type { default as FileUploadOptionsType } from './FileUploadOptionsType';
+export type { default as UploadType } from './UploadType';

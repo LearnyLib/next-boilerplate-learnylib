@@ -1,7 +1,7 @@
 import 'server-only';
-import CoreAPI from '../services/CoreAPI';
+import CoreAPI from '../coreapi/CoreAPI';
 import { getRefreshToken, getSsoToken, setTokensInCookies } from './tokens';
-import AuthTokensType from '../types/AuthTokensType';
+import AuthTokensType from '../../types/AuthTokensType';
 
 /**
  * Rafraîchit les tokens d'authentification en utilisant le refresh token stocké dans les cookies

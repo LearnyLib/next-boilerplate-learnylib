@@ -1,6 +1,6 @@
 'use server';
+import CoreAPI from '../services/coreapi/CoreAPI';
 import FormStateType from '../types/FormStateType';
-import CoreAPI from '../services/CoreAPI';
 import ResetPasswordSchema from '../validation/ResetPasswordSchema';
 
 /**

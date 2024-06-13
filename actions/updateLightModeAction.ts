@@ -1,6 +1,6 @@
 'use server';
 import { revalidatePath } from 'next/cache';
-import { setLightModeInCookies } from '../services/lightMode';
+import { setLightModeInCookies } from '../services/cookies/lightMode';
 import LightModeType from '../types/LightModeType';
 import isValidLightMode from '../validation/isValidLightMode';
 import { redirect } from 'next/navigation';
