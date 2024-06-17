@@ -4,9 +4,10 @@ import FormStateType from '../types/FormStateType';
 import { redirect } from 'next/navigation';
 import CredentialsType from '../types/CredentialsType';
 import SignUpFormSchema from '../validation/SignUpFormSchema';
-import CreateUserDto from '../dto/CreateUserDto';
+import CreateUserDto from '../services/coreapi/dto/CreateUserDto';
 import CoreAPI from '../services/coreapi/CoreAPI';
 import login from '../services/auth/login';
+import { createUser } from '../services';
 
 /**
  * Création du compte utilisateur après soumission du formulaire d'inscription
@@ -55,7 +56,7 @@ export default async function signUpAction(
   const user: CreateUserDto = validation.data;
 
   try {
-    await CoreAPI.post('/users', user);
+    await createUser(user);
   } catch (error: any) {
     console.log('Failed to create user', error);
 

@@ -12,6 +12,7 @@ export default interface UserModel {
   zip: string | null;
   city: string | null;
   country: string | null;
+  professionalId: string | null;
   pictureUrl: string | null;
   createdAt: string;
   updatedAt: string;

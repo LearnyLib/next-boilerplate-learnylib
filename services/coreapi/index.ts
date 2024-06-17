@@ -1,1 +1,7 @@
-export { default as getAuthUser } from './getAuthUser';
+export {
+  getAuthUser,
+  createUser,
+  updateAuthUser,
+  addAuthUserRole,
+  removeAuthUserRole,
+} from './user';
