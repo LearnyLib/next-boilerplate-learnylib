@@ -5,9 +5,9 @@ import { getRefreshToken, validateToken } from './tokens';
 /**
  * Récupère les informations de la session dans le refresh token enregistré dans les cookies
  * Approche optimiste et rapide (pas de vérification de la validité des tokens via l'API)
- * @returns {Promise<SessionType>} - Retourne une promesse résolue avec un objet de type SessionType contenant les informations de la session
+ * @returns {SessionType} - Retourne un objet de type SessionType contenant les informations de la session
  */
-export default async function getSession(): Promise<SessionType> {
+export default function getSession(): SessionType {
   let session: SessionType = {
     isAuth: false,
     user: null,

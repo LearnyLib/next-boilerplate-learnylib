@@ -12,4 +12,5 @@ export default interface CreateUserDto {
   city?: string | null;
   country?: string | null;
   pictureUrl?: string | null;
+  professionalId?: string | null;
 }

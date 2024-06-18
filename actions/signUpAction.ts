@@ -4,7 +4,7 @@ import FormStateType from '../types/FormStateType';
 import { redirect } from 'next/navigation';
 import CredentialsType from '../types/CredentialsType';
 import SignUpFormSchema from '../validation/SignUpFormSchema';
-import CreateUserDto from '../services/coreapi/dto/CreateUserDto';
+import CreateUserDto from '../dto/CreateUserDto';
 import CoreAPI from '../services/coreapi/CoreAPI';
 import login from '../services/auth/login';
 import { createUser } from '../services';
