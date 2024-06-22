@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CountryType from '../../types/CountryType';
 import CountryFlag from '../ui/CountryFlag';
 import useTranslate from '../../hooks/useTranslate';
@@ -48,12 +48,6 @@ export default function PhoneInput({
   // Numéro de téléphone sans l'indicatif
   const [number, setNumber] = useState<string>('');
 
-  // Numéro de téléphone complet avec l'indicatif
-  const phoneValue = useMemo(
-    () => (country?.dial || '') + number,
-    [country, number],
-  );
-
   // Extraction du code pays et du numéro sans indicatif à partir du numéro de téléphone complet
   useEffect(() => {
     if (value.length > 1) {
@@ -64,13 +58,26 @@ export default function PhoneInput({
   }, [value]);
 
   const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newCountry = countries.find((c) => c.code === event.target.value);
-    setCountry(newCountry);
+    const newCountry = countriesMap[event.target.value];
+    const newPhoneValue = (newCountry?.dial || '') + number;
+    triggerChangeEvent(newPhoneValue);
   };
 
   const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newNumber = formatOnlyDigits(event.target.value);
-    setNumber(newNumber);
+    const newPhoneValue = (country?.dial || '') + newNumber;
+    triggerChangeEvent(newPhoneValue);
+  };
+
+  // Simule un événement onChange sur un input "phone"
+  const triggerChangeEvent = (newPhoneValue: string) => {
+    onChange({
+      target: {
+        name: name,
+        type: 'phone',
+        value: newPhoneValue,
+      },
+    } as React.ChangeEvent<HTMLInputElement>);
   };
 
   return (
@@ -120,10 +127,28 @@ export default function PhoneInput({
         }}
       />
 
-      <input type="hidden" name={name} value={phoneValue} onChange={onChange} />
+      <input type="hidden" name={name} value={value} />
     </Stack>
   );
 }
+
+/**
+ * Interface pour le map des pays indexés par code
+ */
+interface CountriesMap {
+  [key: string]: CountryType;
+}
+
+/**
+ * Liste des pays indexées par le code pays
+ */
+const countriesMap: CountriesMap = countries.reduce(
+  (map: CountriesMap, country: CountryType) => {
+    map[country.code] = country;
+    return map;
+  },
+  {},
+);
 
 /**
  * Fonction pour ne conserver que les chiffres d'une chaîne.
