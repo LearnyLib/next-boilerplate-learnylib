@@ -5,7 +5,7 @@ export default interface CreateUserDto {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
+  password?: string;
   phone?: string | null;
   address?: string | null;
   zip?: string | null;

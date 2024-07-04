@@ -13,6 +13,10 @@ export {
   createCompany,
   updateCompany,
   linkUserToCompany,
-  linkUserToCompanyByEmail,
   unlinkUserFromCompany,
+  getCompanyUser,
+  createCompanyUser,
+  updateCompanyUser,
+  addCompanyUserRole,
+  removeCompanyUserRole,
 } from './company';

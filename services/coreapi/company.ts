@@ -3,6 +3,7 @@ import { CompanyModel, UserModel } from '../../models';
 import CoreAPI from './CoreAPI';
 import CreateCompanyDto from '../../dto/CreateCompanyDto';
 import UpdateCompanyDto from '../../dto/UpdateCompanyDto';
+import { CreateUserDto } from '../../dto';
 
 /**
  * Récupère les informations d'une entreprise par son identifiant.
@@ -69,23 +70,6 @@ export async function linkUserToCompany(
 }
 
 /**
- * Associe un utilisateur à une entreprise en utilisant son email.
- * @async
- * @param {string} email - L'email de l'utilisateur.
- * @param {number} companyId - L'identifiant de l'entreprise.
- * @returns {Promise<UserModel>} - Les informations de l'utilisateur associé.
- */
-export async function linkUserToCompanyByEmail(
-  email: string,
-  companyId: number,
-): Promise<UserModel> {
-  const response = await CoreAPI.post(`/companies/${companyId}/users`, {
-    email,
-  });
-  return response.data;
-}
-
-/**
  * Dissocie un utilisateur d'une entreprise.
  * @async
  * @param {number} userId - L'identifiant de l'utilisateur.
@@ -97,4 +81,90 @@ export async function unlinkUserFromCompany(
   companyId: number,
 ): Promise<void> {
   await CoreAPI.delete(`/companies/${companyId}/users/${userId}`);
+}
+
+/**
+ * Modifie un utilisateur de l'entreprise
+ * @param {number} companyId
+ * @param {number} userId
+ * @returns {Promise<UserModel>}
+ */
+export async function getCompanyUser(
+  companyId: number,
+  userId: number,
+): Promise<UserModel> {
+  const response = await CoreAPI.get(`/companies/${companyId}/users/${userId}`);
+  return response.data;
+}
+
+/**
+ * Crée un nouvel utilisateur au sein de l'entreprise
+ * @param {number} companyId
+ * @param {CreateUserDto} createUserDto
+ * @returns {Promise<UserModel>}
+ */
+export async function createCompanyUser(
+  companyId: number,
+  createUserDto: CreateUserDto,
+): Promise<UserModel> {
+  const response = await CoreAPI.post(
+    `/companies/${companyId}/users`,
+    createUserDto,
+  );
+  return response.data;
+}
+
+/**
+ * Modifie un utilisateur de l'entreprise
+ * @param {number} companyId
+ * @param {number} userId
+ * @param {UpdateUserDto} updateUserDto
+ * @returns {Promise<UserModel>}
+ */
+export async function updateCompanyUser(
+  companyId: number,
+  userId: number,
+  updateUserDto: CreateUserDto,
+): Promise<UserModel> {
+  const response = await CoreAPI.put(
+    `/companies/${companyId}/users/${userId}`,
+    updateUserDto,
+  );
+  return response.data;
+}
+
+/**
+ * Ajoute un rôle à l'utilisateur de l'entreprise
+ * @param {number} companyId
+ * @param {number} userId
+ * @param {string} role
+ * @returns {Promise<UserModel>}
+ */
+export async function addCompanyUserRole(
+  companyId: number,
+  userId: number,
+  role: string,
+): Promise<UserModel> {
+  const response = await CoreAPI.post(
+    `/companies/${companyId}/users/${userId}/roles/${role}`,
+  );
+  return response.data;
+}
+
+/**
+ * Supprime un rôle à l'utilisateur de l'entreprise
+ * @param {number} companyId
+ * @param {number} userId
+ * @param {string} role
+ * @returns {Promise<UserModel>}
+ */
+export async function removeCompanyUserRole(
+  companyId: number,
+  userId: number,
+  role: string,
+): Promise<UserModel> {
+  const response = await CoreAPI.delete(
+    `/companies/${companyId}/users/${userId}/roles/${role}`,
+  );
+  return response.data;
 }

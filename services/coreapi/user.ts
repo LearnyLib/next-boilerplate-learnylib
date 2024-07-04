@@ -47,7 +47,7 @@ export async function updateAuthUser(
  */
 export async function addAuthUserRole(role: string): Promise<UserModel> {
   const user = await getAuthUser();
-  const response = await CoreAPI.post(`/users/${user.id}/roles`, { role });
+  const response = await CoreAPI.post(`/users/${user.id}/roles/${role}`);
   return response.data;
 }
 
