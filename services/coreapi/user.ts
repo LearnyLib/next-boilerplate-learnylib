@@ -64,9 +64,9 @@ export async function removeAuthUserRole(role: string): Promise<UserModel> {
 
 /**
  * Récupère les entreprises de l'utilisateur authentifié
- * @returns {Promise<CompanyModel>}
+ * @returns {Promise<CompanyModel[]>}
  */
-export async function getAuthUserCompanies(): Promise<CompanyModel> {
+export async function getAuthUserCompanies(): Promise<CompanyModel[]> {
   const user = await getAuthUser();
   const response = await CoreAPI.get(`/users/${user.id}/companies`);
   return response.data;
