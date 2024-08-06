@@ -1,10 +1,13 @@
 'use client';
 import countries from '../../utils/countries';
 import {
+  Box,
   InputAdornment,
   MenuItem,
   Stack,
+  SxProps,
   TextField,
+  Theme,
   Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -20,6 +23,8 @@ interface PhoneInputProps {
   ) => void;
   size?: 'small' | 'medium';
   required?: boolean;
+  disabled?: boolean;
+  sx?: SxProps<Theme> | undefined;
 }
 
 interface PhoneInfosType {
@@ -39,6 +44,8 @@ export default function PhoneInput({
   onChange,
   size = 'small',
   required = false,
+  disabled = false,
+  sx,
 }: PhoneInputProps): JSX.Element {
   const t = useTranslate();
 
@@ -81,7 +88,7 @@ export default function PhoneInput({
   };
 
   return (
-    <Stack direction="row" alignItems="center" spacing={1}>
+    <Stack direction="row" alignItems="center" spacing={1} sx={sx}>
       <TextField
         select
         name={name + 'Country'}
@@ -90,11 +97,18 @@ export default function PhoneInput({
         size={size}
         SelectProps={{
           renderValue: (selectedValue: any) =>
-            selectedValue ? <CountryFlag code={selectedValue} /> : '',
+            selectedValue ? (
+              <Box sx={disabled ? { opacity: 0.5 } : undefined}>
+                <CountryFlag code={selectedValue} />
+              </Box>
+            ) : (
+              ''
+            ),
         }}
         InputLabelProps={{ shrink: true }}
         sx={{ width: 70 }}
         required={required}
+        disabled={disabled ? true : false}
       >
         {countries
           .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -125,6 +139,7 @@ export default function PhoneInput({
             </InputAdornment>
           ),
         }}
+        disabled={disabled ? true : false}
       />
 
       <input type="hidden" name={name} value={value} />
