@@ -1,4 +1,4 @@
-import { useAppConfig } from '../../hooks';
+import { useTheme } from '@mui/material';
 import styles from '../../styles/learnylib.module.css';
 import NavTop from './NavTop';
 
@@ -7,11 +7,11 @@ import NavTop from './NavTop';
  * @returns {JSX.Element}
  */
 export default function SmallScreenHeader(): JSX.Element {
-  const config = useAppConfig();
+  const theme = useTheme();
   return (
     <header
       className={styles.smallScreenHeader}
-      style={{ backgroundColor: config?.theme.colors.dark }}
+      style={{ backgroundColor: theme.palette.background.nav }}
     >
       <NavTop />
     </header>

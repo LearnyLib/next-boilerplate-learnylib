@@ -1,7 +1,7 @@
-import ColorsType from './ColorsType';
-import { NextFont } from 'next/dist/compiled/@next/font';
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 import LightModeType from './LightModeType';
 import LogoType from './LogoType';
+import { PaletteOptions } from '@mui/material';
 
 /**
  * Configuration globale de l'application
@@ -17,19 +17,19 @@ export default interface AppConfigType {
    */
   theme: {
     /**
-     * Palette de couleurs de l'application
-     * Ces couleurs sont utilisées dans le thème MUI
+     * Typographie MUI
      */
-    colors: ColorsType;
+    typography: TypographyOptions;
 
     /**
-     * Polices utilisées dans l'application
-     * Ces polices sont utilisées dans le thème MUI
+     * Palette de couleurs MUI en "light mode"
      */
-    fonts: {
-      main: NextFont; // Police principale
-      headline: NextFont; // Police utilisée pour les gros titres
-    };
+    lightPalette: PaletteOptions;
+
+    /**
+     * Palette de couleurs MUI en "dark mode"
+     */
+    darkPalette: PaletteOptions;
 
     /**
      * Logo de l'application

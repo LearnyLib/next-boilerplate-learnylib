@@ -3,20 +3,20 @@ import styles from '../../styles/learnylib.module.css';
 import Menu from './Menu';
 import LightButton from './LightButton';
 import UserWidget from './UserWidget';
-import useAppConfig from '../../hooks/useAppConfig';
 import NavTop from './NavTop';
+import { useTheme } from '@mui/material';
 
 /**
  * Barre de navigation de l'application
  * @returns {JSX.Element} - Composant JSX
  */
 export default function Nav(): JSX.Element {
-  const config = useAppConfig();
+  const theme = useTheme();
 
   return (
     <nav
       className={styles.nav}
-      style={{ backgroundColor: config?.theme.colors.dark }}
+      style={{ backgroundColor: theme.palette.background.nav }}
     >
       <NavTop />
 

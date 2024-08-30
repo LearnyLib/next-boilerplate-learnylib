@@ -1,16 +1,16 @@
 'use client';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Toast from './Toast';
 import LightModeType from '../../types/LightModeType';
 import AppConfigType from '../../types/AppConfigType';
-import { useTheme } from '../../theme/useTheme';
-import { useBackgroundStyle } from '../../theme/useBackgroundStyle';
 import useLightModeStore from '../../store/useLightModeStore';
 import { useEffect, useState } from 'react';
 import useAppConfigStore from '../../store/useAppConfigStore';
+import { useLearnyLibTheme } from '../../theme/useLearnyLibTheme';
 
 interface TemplateProviderProps {
   children: React.ReactNode;
@@ -23,9 +23,7 @@ export default function TemplateProvider({
   lightMode,
   config,
 }: TemplateProviderProps) {
-  const theme = useTheme(config, lightMode);
-
-  const backgroundStyle = useBackgroundStyle(config, lightMode);
+  const theme = useLearnyLibTheme(config, lightMode);
 
   const { setLightMode } = useLightModeStore();
 
@@ -41,14 +39,13 @@ export default function TemplateProvider({
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <QueryClientProvider client={client}>
         <ReactQueryStreamedHydration>
-          <div style={backgroundStyle}>{children}</div>
+          <div>{children}</div>
         </ReactQueryStreamedHydration>
-
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-
       <Toast />
     </ThemeProvider>
   );
