@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import axios, { AxiosInstance } from 'axios';
 import { getAccessToken } from '../auth/tokens';
 import refreshTokens from '../auth/refreshTokens';
@@ -28,14 +28,14 @@ const CoreAPI: AxiosInstance = axios.create({
  * Intercepteur de requête pour ajouter l'access token à chaque requête afin d'authentifier l'utilisateur
  */
 CoreAPI.interceptors.request.use(
-  function (config) {
+  async (config) => {
     console.log(
       'Core API request:',
       config?.method?.toUpperCase(),
       config?.url,
     );
 
-    const accessToken = getAccessToken();
+    const accessToken = await getAccessToken();
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -57,9 +57,9 @@ CoreAPI.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error?.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error?.response?.status === 401 && !originalRequest._retry) {
       // Marquer la requête originale comme réessayée
       originalRequest._retry = true;
 

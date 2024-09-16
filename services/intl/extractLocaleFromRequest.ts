@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import { NextRequest } from 'next/server';
 import { locales, defaultLocale } from './locales';
 import LocaleType from '../../types/LocaleType';
@@ -9,11 +9,11 @@ import isValidLocale from '../../validation/isValidLocale';
  * Celle du cookie est retenue en priorité, sinon celle header 'accept-language'
  * Si aucune locale n'est trouvée, on retourne la locale par défaut de l'application
  * @param {NextRequest} request - Requête HTTP
- * @returns {LocaleType} - Langue locale (composée de deux lettres)
+ * @returns {Promise<LocaleType>} - Langue locale (composée de deux lettres)
  */
-export default function extractLocaleFromRequest(
+export default async function extractLocaleFromRequest(
   request: NextRequest,
-): LocaleType {
+): Promise<LocaleType> {
   // On récupère la locale qui correspond au header 'accept-language' de la requête
   const acceptLanguage: string =
     request.headers.get('accept-language')?.split(',')[0] || '';

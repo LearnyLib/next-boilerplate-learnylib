@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import AuthTokensType from '../../types/AuthTokensType';
 import { cookies } from 'next/headers';
 import decodeJwtPayload from '../../utils/decodeJwtPayload';
@@ -9,79 +9,81 @@ import CookieOptions from '../../types/CookieOptionsType';
 /**
  * Enregistrement des tokens dans des cookies HttpOnly
  * @param {AuthTokensType} tokens - Objet contenant les tokens d'authentification
- * @returns {void}
+ * @returns {Promise<void>}
  * @throws {Error} - Lance une erreur si les tokens sont invalides
  */
-export function setTokensInCookies(tokens: AuthTokensType): void {
-  setRefreshToken(tokens.refreshToken);
-  setAccessToken(tokens.accessToken);
+export async function setTokensInCookies(
+  tokens: AuthTokensType,
+): Promise<void> {
+  await setRefreshToken(tokens.refreshToken);
+  await setAccessToken(tokens.accessToken);
 }
 
 /**
  * Enregistre l'access token dans les cookies
- * @param accessToken
+ * @param {string} accessToken
+ * @returns {Promise<void>}
  */
-export function setAccessToken(accessToken: string): void {
+export async function setAccessToken(accessToken: string): Promise<void> {
   // Validation du token et récupération du payload
-  const accessTokenPayload = validateToken(accessToken);
+  const accessTokenPayload = await validateToken(accessToken);
 
   if (!accessTokenPayload) {
     throw new Error('Invalid access token');
   }
 
+  const cookieOptions = await createTokenCookieOptions(accessTokenPayload);
+
   // Enregistrement du cookie
-  cookies().set(
-    'learnylib_access_token',
-    accessToken,
-    createTokenCookieOptions(accessTokenPayload),
-  );
+  cookies().set('learnylib_access_token', accessToken, cookieOptions);
 }
 
 /**
  * Enregistre le refresh token dans les cookies
  * @param {string} refreshToken
+ * @returns {Promise<void>}
  */
-export function setRefreshToken(refreshToken: string): void {
+export async function setRefreshToken(refreshToken: string): Promise<void> {
   // Validation du token et récupération du payload
-  const refreshTokenPayload = validateToken(refreshToken);
+  const refreshTokenPayload = await validateToken(refreshToken);
 
   if (!refreshTokenPayload) {
     throw new Error('Invalid refresh token');
   }
 
+  const cookieOptions = await createTokenCookieOptions(refreshTokenPayload);
+
   // Enregistrement du cookie
-  cookies().set(
-    'learnylib_refresh_token',
-    refreshToken,
-    createTokenCookieOptions(refreshTokenPayload),
-  );
+  cookies().set('learnylib_refresh_token', refreshToken, cookieOptions);
 }
 
 /**
  * Récupère le token d'accès dans les cookies
- * @returns {string | undefined} - Retourne le token d'accès sous forme de chaîne de caractères ou undefined si le token n'est pas trouvé
+ * @returns {Promise<string | undefined>} - Retourne le token d'accès sous forme de chaîne de caractères ou undefined si le token n'est pas trouvé
  */
-export function getAccessToken(): string | undefined {
-  const token = cookies().get('learnylib_access_token')?.value;
-  if (!token || !validateToken(token)) return undefined;
+export async function getAccessToken(): Promise<string | undefined> {
+  const token = cookies().get('learnylib_access_token')?.value || '';
+  const tokenIsValid = await validateToken(token);
+  if (!token || !tokenIsValid) return undefined;
   return token;
 }
 
 /**
  * Récupère le token de rafraîchissement dans les cookies
- * @returns {string | undefined} - Retourne le token de rafraîchissement sous forme de chaîne de caractères ou undefined si le token n'est pas trouvé
+ * @returns {Promise<string | undefined>} - Retourne le token de rafraîchissement sous forme de chaîne de caractères ou undefined si le token n'est pas trouvé
  */
-export function getRefreshToken(): string | undefined {
-  const token = cookies().get('learnylib_refresh_token')?.value;
-  if (!token || !validateToken(token)) return undefined;
+export async function getRefreshToken(): Promise<string | undefined> {
+  const token = cookies().get('learnylib_refresh_token')?.value || '';
+  const tokenIsValid = await validateToken(token);
+  if (!token || !tokenIsValid) return undefined;
   return token;
 }
 
 /**
  * Supprime les cookies contenant les tokens d'authentification
- * @returns {void}
+ * @returns {Promise<void>}
  */
-export function removeTokensFromCookies(): void {
+export async function removeTokensFromCookies(): Promise<void> {
   cookies().delete('learnylib_access_token');
   cookies().delete('learnylib_refresh_token');
 }
@@ -89,9 +91,11 @@ export function removeTokensFromCookies(): void {
 /**
  * Valide le format d'un token JWT et renvoie le payload décodé
  * @param {string} token - Le token JWT à valider
- * @returns {TokenPayloadType | false} - Retourne le payload décodé du token s'il est valide, sinon retourne false
+ * @returns {Promise<TokenPayloadType | false>} - Retourne le payload décodé du token s'il est valide, sinon retourne false
  */
-export function validateToken(token: string): TokenPayloadType | false {
+export async function validateToken(
+  token: string,
+): Promise<TokenPayloadType | false> {
   const payload = decodeJwtPayload(token);
 
   if (!payload) return false;
@@ -114,11 +118,11 @@ export function validateToken(token: string): TokenPayloadType | false {
 /**
  * Génère les options pour les cookies d'authentification
  * @param {TokenPayloadType} tokenPayload
- * @returns {CookieOptions}
+ * @returns {Promise<CookieOptions>}
  */
-export default function createTokenCookieOptions(
+export default async function createTokenCookieOptions(
   tokenPayload: TokenPayloadType,
-): CookieOptions {
+): Promise<CookieOptions> {
   const lifetime: number = (tokenPayload.exp - tokenPayload.iat) * 1000;
   return {
     httpOnly: true,

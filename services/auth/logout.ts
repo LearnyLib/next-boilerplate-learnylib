@@ -6,5 +6,5 @@ import { removeTokensFromCookies } from './tokens';
  * @returns {Promise<void>}
  */
 export default async function logout(): Promise<void> {
-  removeTokensFromCookies();
+  await removeTokensFromCookies();
 }

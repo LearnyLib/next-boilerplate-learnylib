@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import CredentialsType from '../../types/CredentialsType';
 import CoreAPI from '../coreapi/CoreAPI';
 import { setTokensInCookies } from './tokens';
@@ -19,7 +19,7 @@ export default async function login(
     // Sauvegarde les tokens dans des cookies HttpOnly
     const tokens = response.data;
 
-    setTokensInCookies(tokens);
+    await setTokensInCookies(tokens);
   } catch {
     throw new Error('Login failed');
   }

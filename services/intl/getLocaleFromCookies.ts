@@ -1,6 +1,5 @@
-import 'server-only';
+//import 'server-only';
 import { cookies } from 'next/headers';
-import { cache } from 'react';
 import { defaultLocale } from './locales';
 import LocaleType from '../../types/LocaleType';
 import isValidLocale from '../../validation/isValidLocale';
@@ -9,7 +8,7 @@ import isValidLocale from '../../validation/isValidLocale';
  * Renvoie la langue locale enregistrée dans les cookies
  * @returns {Promise<LocaleType>} - Promesse retournant la langue locale
  */
-export const getLocaleFromCookies = cache(async (): Promise<LocaleType> => {
+export default async function getLocaleFromCookies(): Promise<LocaleType> {
   const cookieLocale: string | undefined =
     cookies().get('learnylib_locale')?.value;
 
@@ -18,6 +17,4 @@ export const getLocaleFromCookies = cache(async (): Promise<LocaleType> => {
     : defaultLocale;
 
   return locale;
-});
-
-export default getLocaleFromCookies;
+}

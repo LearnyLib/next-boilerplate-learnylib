@@ -2,7 +2,6 @@
 import UpdateUserDto from '../../dto/UpdateUserDto';
 import CoreAPI from './CoreAPI';
 import CreateUserDto from '../../dto/CreateUserDto';
-import { cache } from 'react';
 import { UserModel } from '../../models';
 import CompanyModel from '../../models/CompanyModel';
 
@@ -10,10 +9,10 @@ import CompanyModel from '../../models/CompanyModel';
  * Récupère les données de l'utilisateur authentifié
  * @returns {Promise<UserModel>}
  */
-export const getAuthUser = cache(async (): Promise<UserModel> => {
+export async function getAuthUser(): Promise<UserModel> {
   const response = await CoreAPI.get('/users/me');
   return response.data;
-});
+}
 
 /**
  * Crée un nouvel utilisateur

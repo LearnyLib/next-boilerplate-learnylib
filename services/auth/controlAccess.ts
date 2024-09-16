@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import { NextRequest } from 'next/server';
 import AccessControlResultType from '../../types/AccessControlResultType';
 import AccessRoutesTypes from '../../types/AccessRoutesType';
@@ -9,12 +9,12 @@ import extractAuthTokenFromRequest from './extractAuthTokenFromRequest';
  * Vérifie si l'utilisateur a le droit ou non d'exécuter une requête en fonction de ses rôles
  * @param {NextRequest} request - Requête HTTP envoyée par le client
  * @param {AccessRoutesTypes} accessRoutes - Routes publiques et routes protégées
- * @returns {AccessControlResultType} - Retourne un booléen indiquant si l'utilisateur est autorisé ou non
+ * @returns {Promise<AccessControlResultType>} - Retourne un booléen indiquant si l'utilisateur est autorisé ou non
  */
-export default function controlAccess(
+export default async function controlAccess(
   request: NextRequest,
   accessRoutes: AccessRoutesTypes,
-): AccessControlResultType {
+): Promise<AccessControlResultType> {
   // Chemin de l'URL auquel l'utilisateur tente d'accéder
   const path = request.nextUrl.pathname;
 
@@ -32,12 +32,13 @@ export default function controlAccess(
   if (!matchingProtectedRoute) return 'authorized';
 
   // On récupère le token d'authentification (refresh ou sso)
-  const authToken: string | undefined = extractAuthTokenFromRequest(request);
+  const authToken: string | undefined =
+    await extractAuthTokenFromRequest(request);
 
   if (!authToken) return 'unauthorized';
 
   // On contrôle la validité du token et on récupère le payload
-  const authTokenPayload = validateToken(authToken);
+  const authTokenPayload = await validateToken(authToken);
 
   if (!authTokenPayload) return 'unauthorized';
 

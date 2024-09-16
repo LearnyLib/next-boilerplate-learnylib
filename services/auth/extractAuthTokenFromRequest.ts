@@ -1,4 +1,4 @@
-import 'server-only';
+//import 'server-only';
 import { NextRequest } from 'next/server';
 import { validateToken } from './tokens';
 import decrypt from '../crypto/decrypt';
@@ -8,11 +8,11 @@ import decrypt from '../crypto/decrypt';
  * On prend en priorité le refresh token enregistré dans les cookies
  * Sinon on prend le ssoToken dans les query params
  * @param {NextRequest} request - Requête HTTP
- * @returns {string | undefined}
+ * @returns {Promise<string | undefined>}
  */
-export default function extractAuthTokenFromRequest(
+export default async function extractAuthTokenFromRequest(
   request: NextRequest,
-): string | undefined {
+): Promise<string | undefined> {
   const refreshToken = request.cookies.get('learnylib_refresh_token')?.value;
 
   const encryptedSsoToken = request.nextUrl.searchParams.get('sso');
@@ -23,7 +23,9 @@ export default function extractAuthTokenFromRequest(
 
   if (!authToken) return undefined;
 
-  if (!validateToken(authToken)) return undefined;
+  const tokenIsValid = await validateToken(authToken);
+
+  if (!tokenIsValid) return undefined;
 
   return authToken;
 }
