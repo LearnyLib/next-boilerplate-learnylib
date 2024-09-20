@@ -61,5 +61,7 @@
   "FileTooLarge": "File troppo grande",
   "FileUploadFailed": "Caricamento file fallito",
   "UnacceptedExtension": "Estensione non accettata: {ext}.",
-  "UnacceptedExtensions": "Estensioni non accettate: {ext}."
+  "UnacceptedExtensions": "Estensioni non accettate: {ext}.",
+  "MutationSuccess": "Le tue modifiche sono state salvate con successo.",
+  "MutationError": "Si è verificato un errore. Non è stato possibile salvare le tue modifiche."
 }
