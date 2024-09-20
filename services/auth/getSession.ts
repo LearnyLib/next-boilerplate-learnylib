@@ -1,4 +1,3 @@
-//import 'server-only';
 import SessionType from '../../types/SessionType';
 import { getRefreshToken, validateToken } from './tokens';
 

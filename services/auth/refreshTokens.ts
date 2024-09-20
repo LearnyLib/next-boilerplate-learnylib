@@ -1,4 +1,3 @@
-//import 'server-only';
 import CoreAPI from '../coreapi/CoreAPI';
 import { getRefreshToken, setTokensInCookies } from './tokens';
 import AuthTokensType from '../../types/AuthTokensType';

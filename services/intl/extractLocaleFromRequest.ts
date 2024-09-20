@@ -1,4 +1,3 @@
-//import 'server-only';
 import { NextRequest } from 'next/server';
 import { locales, defaultLocale } from './locales';
 import LocaleType from '../../types/LocaleType';

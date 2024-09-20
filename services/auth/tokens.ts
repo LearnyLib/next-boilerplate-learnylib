@@ -1,4 +1,3 @@
-//import 'server-only';
 import AuthTokensType from '../../types/AuthTokensType';
 import { cookies } from 'next/headers';
 import decodeJwtPayload from '../../utils/decodeJwtPayload';

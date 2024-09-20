@@ -1,4 +1,3 @@
-//import 'server-only';
 import { NextRequest } from 'next/server';
 import AccessControlResultType from '../../types/AccessControlResultType';
 import AccessRoutesTypes from '../../types/AccessRoutesType';

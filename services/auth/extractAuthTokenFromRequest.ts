@@ -1,4 +1,3 @@
-//import 'server-only';
 import { NextRequest } from 'next/server';
 import { validateToken } from './tokens';
 import decrypt from '../crypto/decrypt';

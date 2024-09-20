@@ -1,4 +1,3 @@
-//import 'server-only';
 import { NextRequest, NextResponse } from 'next/server';
 import createTokenCookieOptions, { validateToken } from '../auth/tokens';
 import extractLocaleFromRequest from '../intl/extractLocaleFromRequest';

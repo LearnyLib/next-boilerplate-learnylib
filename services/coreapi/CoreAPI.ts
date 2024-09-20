@@ -1,4 +1,3 @@
-//import 'server-only';
 import axios, { AxiosInstance } from 'axios';
 import { getAccessToken } from '../auth/tokens';
 import refreshTokens from '../auth/refreshTokens';
