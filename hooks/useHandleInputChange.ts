@@ -19,7 +19,7 @@ export default function useHandleInputChange(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = event.target;
 
-      let newState = { ...state, [name]: value.trim() };
+      let newState = { ...state, [name]: value };
 
       setState(newState);
     },

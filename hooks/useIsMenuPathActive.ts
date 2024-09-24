@@ -32,7 +32,9 @@ export default function useIsMenuPathActive(): isPathActiveFn {
 
   const isPathActive = useCallback(
     (path: string) => {
-      const pathActive = pathsSortedByLengthDesc.find((p) => p === pathname);
+      const pathActive = pathsSortedByLengthDesc.find((p) =>
+        pathname.startsWith(p),
+      );
 
       return pathActive === path;
     },
