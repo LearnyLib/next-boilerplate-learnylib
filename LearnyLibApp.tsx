@@ -35,7 +35,7 @@ export default async function LearnyLibApp({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <AppRouterCacheProvider>
-        <TemplateProvider lightMode={lightMode} config={config}>
+        <TemplateProvider lightMode={lightMode} config={config} locale={locale}>
           {children}
         </TemplateProvider>
       </AppRouterCacheProvider>

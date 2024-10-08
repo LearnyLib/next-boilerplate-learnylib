@@ -11,17 +11,20 @@ import useLightModeStore from '../../store/useLightModeStore';
 import { useEffect, useState } from 'react';
 import useAppConfigStore from '../../store/useAppConfigStore';
 import { useLearnyLibTheme } from '../../theme/useLearnyLibTheme';
+import { translateDayJs } from '../../utils';
 
 interface TemplateProviderProps {
   children: React.ReactNode;
   lightMode: LightModeType;
   config: AppConfigType;
+  locale: string;
 }
 
 export default function TemplateProvider({
   children,
   lightMode,
   config,
+  locale,
 }: TemplateProviderProps) {
   const theme = useLearnyLibTheme(config, lightMode);
 
@@ -36,6 +39,10 @@ export default function TemplateProvider({
 
     setConfig(config);
   }, [lightMode, setLightMode, config, setConfig]);
+
+  useEffect(() => {
+    translateDayJs(locale);
+  }, [locale]);
 
   return (
     <ThemeProvider theme={theme}>

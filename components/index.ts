@@ -26,6 +26,7 @@ export { default as Menu } from './ui/Menu';
 export { default as Logo } from './ui/Logo';
 export { default as LoadingScreen } from './ui/LoadingScreen';
 export { default as Loader } from './ui/Loader';
+export { default as Error } from './ui/Error';
 export { default as LightButton } from './ui/LightButton';
 export { default as FocusTemplate } from './ui/FocusTemplate';
 export { default as ErrorScreen } from './ui/ErrorScreen';

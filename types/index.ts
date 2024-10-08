@@ -24,3 +24,4 @@ export type { default as AccessControlResultType } from './AccessControlResultTy
 export type { default as CookieOptionsType } from './CookieOptionsType';
 export type { default as FileUploadOptionsType } from './FileUploadOptionsType';
 export type { default as UploadType } from './UploadType';
+export type { default as TokenUserType } from './TokenUserType';

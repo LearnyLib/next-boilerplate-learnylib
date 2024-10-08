@@ -17,6 +17,7 @@ export default function Logo(): JSX.Element {
       alt="LearnyLib"
       width={config.theme.logo.width}
       height={config.theme.logo.height}
+      priority
     />
   );
 }
