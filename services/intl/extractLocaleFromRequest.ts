@@ -1,7 +1,8 @@
 import { NextRequest } from 'next/server';
-import { locales, defaultLocale } from './locales';
+import { defaultLocale } from './locales';
 import LocaleType from '../../types/LocaleType';
 import isValidLocale from '../../validation/isValidLocale';
+import extractLocaleFromAcceptLanguageHeader from './extractLocaleFromAcceptLanguageHeader';
 
 /**
  * Extrait la langue (locale) de la requête
@@ -14,13 +15,10 @@ export default async function extractLocaleFromRequest(
   request: NextRequest,
 ): Promise<LocaleType> {
   // On récupère la locale qui correspond au header 'accept-language' de la requête
-  const acceptLanguage: string =
-    request.headers.get('accept-language')?.split(',')[0] || '';
+  const acceptLanguageHeader = request.headers.get('accept-language') || '';
 
-  // On tente de trouver la locale qui correspond au 'accept-language'
-  const matchingLocale: LocaleType | undefined = locales.find(
-    (locale: LocaleType) => acceptLanguage.startsWith(locale),
-  );
+  const matchingLocale: LocaleType | null =
+    await extractLocaleFromAcceptLanguageHeader(acceptLanguageHeader);
 
   // Sinon on prend la locale par défaut
   const acceptLocale: LocaleType = matchingLocale || defaultLocale;
