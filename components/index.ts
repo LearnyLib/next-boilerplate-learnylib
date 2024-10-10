@@ -9,6 +9,7 @@ export { default as PasswordInput } from './form/PasswordInput';
 export { default as ForgotPasswordForm } from './form/ForgotPasswordForm';
 export { default as CallbackUrlInput } from './form/CallbackUrlInput';
 export { default as AuthForm } from './form/AuthForm';
+export { default as Recorder } from './form/Recorder';
 
 export { default as UserWidget } from './ui/UserWidget';
 export { default as UserAvatar } from './ui/UserAvatar';

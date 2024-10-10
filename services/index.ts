@@ -4,3 +4,4 @@ export * from './cellar';
 export * from './crypto';
 export * from './coreapi';
 export * from './intl';
+export * from './openai';
