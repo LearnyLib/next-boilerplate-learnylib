@@ -5,6 +5,7 @@ import getFileUrl from './getFileUrl';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import getFileExtension from '../../utils/getFileExtension';
 import { acceptedFileExtensions, uploadMaxSize } from './config';
+import { generateUniqueId } from '../../utils';
 
 /**
  * Upload de fichiers avec Clever Cloud Cellar S3 et aws-sdk
@@ -45,7 +46,8 @@ export default async function uploadFile(
   }
 
   // Nommage du fichier
-  const fileName = `${options?.namePrefix ? `${options.namePrefix}_` : ''}${file.name.split('.')[0]}-${Date.now()}${extension}`;
+  const fileUniqueId = generateUniqueId();
+  const fileName = `${fileUniqueId}_${options?.namePrefix ? `${options.namePrefix}_` : ''}${file.name.split('.')[0]}${extension}`;
 
   // Upload
   try {

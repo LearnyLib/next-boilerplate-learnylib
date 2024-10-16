@@ -244,7 +244,7 @@ export default function FileUploader({
 
         {value.length < max && (
           <>
-            <CloudUpload color="action" sx={{ fontSize: 40 }} />
+            <CloudUpload color="action" sx={{ fontSize: 40, opacity: 0.5 }} />
 
             <Typography variant="body2" color="text.secondary">
               {t('DropFiles')}

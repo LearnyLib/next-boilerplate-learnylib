@@ -52,9 +52,11 @@ export default function UploadRow({
   };
 
   const fileName: string = useMemo(() => {
-    return (
-      upload.file?.name || (upload.url ? getFileNameFromUrl(upload.url) : '')
-    );
+    if (upload.file?.name) return upload.file.name;
+    if (!upload.url) return '';
+    // Les noms des fichiers uploadés sont préfixés d'un identifiant unique. On le retire pour l'affichage.
+    const fileNameWithId = getFileNameFromUrl(upload.url);
+    return fileNameWithId.split('_').slice(1).join('_');
   }, [upload]);
 
   return (
