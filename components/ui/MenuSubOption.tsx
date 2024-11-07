@@ -32,8 +32,6 @@ export default function MenuSubOption({
       className={isActive ? styles.menuSubOptionActive : styles.menuSubOption}
       onClick={() => setShowSmallScreenNav(false)}
     >
-      <Typography>&bull;</Typography>
-
       <Typography>{t(subOption.label)}</Typography>
     </Link>
   );
