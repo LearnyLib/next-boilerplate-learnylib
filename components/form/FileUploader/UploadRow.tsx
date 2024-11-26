@@ -2,7 +2,7 @@
 import useTranslate from '../../../hooks/useTranslate';
 import deleteFileByUrl from '../../../services/cellar/deleteFileByUrl';
 import { UploadType } from '../../../types';
-import getFileNameFromUrl from '../../../utils/getFileNameFromUrl';
+import { getFileNameFromUrl } from '../../../utils';
 import {
   Close,
   CloudDone,

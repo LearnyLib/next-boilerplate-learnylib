@@ -13,7 +13,7 @@ import { useMemo, useRef, useState } from 'react';
 import UploadType from '../../../types/UploadType';
 import UploadRow from './UploadRow';
 import { uploadFile } from '../../../services';
-import getFileExtension from '../../../utils/getFileExtension';
+import { getFileExtension } from '../../../utils';
 
 interface FileInputProps {
   label?: string;

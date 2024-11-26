@@ -1,7 +1,7 @@
 'use server';
 import { DeleteObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import S3 from './S3';
-import getFileNameFromUrl from '../../utils/getFileNameFromUrl';
+import { getFileNameFromUrl } from '../../utils';
 
 /**
  * Supprimer un fichier stocké sur Clever Cloud Cellar S3

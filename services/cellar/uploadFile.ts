@@ -3,9 +3,8 @@ import S3 from './S3';
 import { FileUploadOptionsType, FormStateType } from '../../types';
 import getFileUrl from './getFileUrl';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import getFileExtension from '../../utils/getFileExtension';
 import { acceptedFileExtensions, uploadMaxSize } from './config';
-import { generateUniqueId } from '../../utils';
+import { generateUniqueId, getFileExtension } from '../../utils';
 
 /**
  * Upload de fichiers avec Clever Cloud Cellar S3 et aws-sdk

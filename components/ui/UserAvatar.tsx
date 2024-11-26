@@ -2,7 +2,7 @@
 import { Typography, useTheme } from '@mui/material';
 import styles from '../../styles/learnylib.module.css';
 import { useMemo } from 'react';
-import { getUserInitials } from '../../utils/user';
+import { getUserInitials } from '../../utils';
 import UserModel from '../../models/UserModel';
 
 interface UserAvatarProps {
